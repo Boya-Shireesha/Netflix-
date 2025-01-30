@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Clone</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #141414;
+            color:white;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #111;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+  
+        .navbar .logo h1 {
+            font-size: 26px;
+            color: #e50914;
+        }
+        
+        .navbar .nav-links ul {
+            display: flex;
+            list-style: none;
+        }
+        
+       .navbar .nav-links ul li {
+            margin-left: 20px;
+            cursor: pointer;
+        }
+  
+        .navbar .nav-links ul li:hover {
+            color: #e50914;
+        }
+        .faq-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #222222;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            }
+
+        .faq-item {
+            margin-bottom: 20px;
+            }
+
+       .faq-item h2 {
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 10px;
+            background-color: #333333;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            }
+
+       .faq-item h2:hover {
+            background-color: #444444;
+            }
+
+       .faq-answer {
+            display: none;
+            padding: 10px;
+            margin-top: 5px;
+            border-left: 4px solid #e50914;
+            background-color: #2c2c2c;
+            border-radius: 4px;
+            }
+            /* Footer Styling */
+        .footer {
+            background-color: #000;
+            color: white;
+            padding: 2rem 1rem;
+            font-family: Arial, sans-serif;
+          }
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 1.5rem;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-section h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer-section p {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+  text-decoration: none;
+  color: #b3b3b3;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+  color: #e50914;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #b3b3b3;
+  margin-top: 1.5rem;
+}
+
+       .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 30px 10px;
+            background-color: #141414;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            flex-direction: row;
+        }
+
+       .logo {
+            width:12% ;
+            font-size: 24px;
+            font-weight: bold;
+            color: #E50914;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+        }
+
+       .nav-links a:hover {
+            text-decoration: underline;
+        }
+       .banner {
+            position: relative;
+            height: 60vh;
+            background: url('https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fib678hcda2hvquourn33.PNG') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .banner h1 {
+            font-size: 48px;
+            margin: 0;
+        }
+
+        .banner p {
+            font-size: 18px;
+            margin: 10px 0 20px;
+        }
+
+       .banner button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #E50914;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+       .banner button:hover {
+            background-color: #f40612;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+       .section {
+            margin-bottom: 30px;
+        }
+
+       .section h2 {
+            margin-bottom: 15px;
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .row::-webkit-scrollbar {
+            display: none;
+        }
+
+        .poster {
+            width: 150px;
+            border-radius: 5px;
+            transition: transform 0.2s;
+        }
+
+       .poster:hover {
+            transform: scale(1.1);
+        }
+        .form{
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+        button.getstarted-btn{
+            padding: 0.5rem 1rem;
+            background-color: red;
+            border:none;
+            text-align: center;
+            cursor: pointer;
+            color:black;
+            border-radius: 0.2rem;
+            font-weight: bolder;
+            font-size: 1.05rem;
+            width: 100px;
+        }
+        .reasons-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 50px;
+            text-align: center;
+            background-color: #141414;
+        }
+
+        .reasons-container h2 {
+            font-size: 3rem; 
+            margin-bottom: 40px;
+            }
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1400px; 
+            margin: 0 auto;
+            }
+        .reason {
+            position: relative;
+            background-color: #222;
+            padding: 20px;
+            padding-bottom: 100px; 
+            border-radius: 10px;
+            overflow: hidden;
+            min-height: 200px;
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .reason:hover {
+            transform: scale(1.05);
+        }
+
+        .reason h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            }
+        .reason p {
+            font-size: 200%;
+            }
+
+        .reason img {
+            position: absolute;
+            bottom: 30px; 
+            right: 30px;  
+            width: 70px;  
+            height: auto;
+            opacity: 0.9; 
+            }
+
+        @media (max-width: 1200px) {
+            .reasons-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .reasons-grid {
+                grid-template-columns: 1fr; 
+            }
+        }
+
+        .reason {
+            min-height: 200px;
+            
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="navbar">
+        <div class="logo">
+          <h1>Netflix</h1>
+        </div>
+        </select>
+        <div class="nav-links">
+          <ul>
+            <li>Home</li>
+            <li>Movies</li>
+            <li>TV Shows</li>
+            <li>My List</li>
+            <li>Profile</li>
+          </ul>
+        </div>
+      </header>
+    
+    <div class="nav">
+        <img class="logo" src="logo.png" alt="">
+    </div>
+    
+
+    <section class="banner">
+        <div>
+            <h1>Unlimited movies</h1>
+            <h2><p>TV shows and more</p></h2>
+            <h3>Starts at ₹149. Cancel at any time.</h3>
+            <p><center>Ready to watch? Enter your email to create or restart your membership.</center></p>
+              <div class="form">
+                <input type="email" placeholder="Email Address">
+                <button class="getstarted-btn">Get Started</button>
+                </div>
+        </div>
+    </section>
+
+    <div class="content">
+        <div class="section">
+            <h2>Trending Now</h2>
+            <div class="row">
+                <img class="poster" src="https://static.digit.in/OTT/v2/images/pushpa-228384.jpg" alt="Trending Movie 1">
+                <img class="poster" src="https://images.vcinema.com/attachments/f155838a-41cc-11eb-862e-02f113d3ceb6-100-days-of-love-movie-listing-2.jpg" alt="Trending Movie 2">
+                <img class="poster" src="https://images.jdmagicbox.com/comp/jd_social/news/2018jul24/image-140833-7ja712trt4.jpg" alt="Trending Movie 3">
+                <img class="poster" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOh09I-ixiy5dd3t4dCm_QZWpqiXHIq6VbQ&s" alt="Trending Movie 4">
+                <img class="poster" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwX9Dof0z8QpCG546F-oizD2Yg1ImebDeNHQ&s" alt="Trending Movie 5">
+                <img class="poster" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREYk8WafLeaF8FFk2804PuwtqSZ35QwDOxbQ&s" alt="Trending Movie 6">
+                <img class="poster" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5b2eDOHTZ3yGq7ILpkX-PGQ9XYSgaDntCgQ&s" alt="Trending Movie 7">
+                <img class="poster" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTni6rmey-x9VBYhHLUBynlJZwJteLj3vznqA&s" alt="Trending Movies 8">
+                <img class="poster" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWhlVhIV1mrpjTAA3ubv_-PopfPFcBZ-LIxw&s" alt="Trending Movies 9">
+                <img class="poster" src="https://images.vcinema.com/attachments/f155838a-41cc-11eb-862e-02f113d3ceb6-100-days-of-love-movie-listing-2.jpg" alt="Trending Movie 10">
+
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Popular on Netflix</h2>
+            <div class="row">
+                <img class="poster" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRy_LL6eOb6GWiYRxVSXIgkZ2KCohHRn5vbTg&s" alt="Popular Movie 1">
+                <img class="poster" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxAB9lNO9qL9qmOeWzo8avP1xhyBBArk6H7g&s" alt="Popular Movie 2">
+                <img class="poster" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1So1MKFIQ0uDjJqMVBpz2U77IaBvzXQWtH90PwIGRlTYtROyb8g2t4rV4xyrn5k120Jc&usqp=CAU" alt="Popular Movie 3">
+                <img class="poster" src="https://m.media-amazon.com/images/M/MV5BZTkwMzI2MDYtYTEyNy00ZGI2LTk2NjAtOGQ5OGUwY2MzNDVmXkEyXkFqcGc@._V1_.jpg" alt="Popular Movie 4">
+                <img class="poster" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAJQAlAMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAAFAAMEBgcCAQj/xAA7EAACAQMDAgQEAwYFBAMAAAABAgMABBEFEiExQQYTUWEicYGhFDKRFSNCscHwByRDUuEWM9HxYnOT/8QAGQEAAwEBAQAAAAAAAAAAAAAAAQIDBAAF/8QAJhEAAgICAgEDBAMAAAAAAAAAAAECEQMhEjFREyJBBDJC8BRxgf/aAAwDAQACEQMRAD8AATAVAlADcU/eOcn50OeVt3SvJijSySJI4UaSRgFHJqLf60t2EbyfMjiUIMAuAB88CourgvZZ3bSrD4fU0JS4nYqMLx/EuVP2NaccFVgsJpqSM6KbdFUngsv8uMUesdLk1N9iRFIyMZzzVcggVpYmYEysw6ktWx+E9L/DWyyzriRugx0FDI60iuON7ZTbn/DfUHHnWzDcR/EaA6loupaKv+eg3xPw7sN3Ht2+1b5DHlAyk1D1a1jubZ0mQOpBByM0FOSV2Pwi3SMT8NXVq0VzYrI2DJutXk/0ywx+h6HtzVl8P3heNLO8JEykqpbqcdR8/wCf1qna9ZwaXrNwIW2hVZljx+bGTj9BRWz1T8Ta6dIHIkjuFVcjt6nnPtnvRyJThZKuLouctksg5qK+mgd6OJsI5NcShQDg15ak0NRXmsyrYGa5ktGxg5xRUn466cfBmn5sFFVlsct8qftLcR/Opd3w2RXEQJqqehRuaIkdaZSJge9SpHxxXgdT1NE4QyB3pU2ZDmlQOIF4oGaGS9TUy4kZuoNQnz3qsVoDI01jPqMmyJuI0LcjPPJ/pUHTLC6vp0itotzO21S3TPc1e9HhnsdOje1to5p7wMZJJDhY4+Bj64z/AGa78N2cdnr138QMdudqHHG49cfcVVZa0WWG0mSbHRbPw7ardNE11eLyZWTcVPsO1NvrN1dOEhvb6C4kQyRpkfEozk4x7H296v8Aa2tpexbZWT4qYfwlbW8hmgvXiznIWQgc/rU072y7qOip+GPGd/HItrfj8Rzw9XN9d02VPKmlSNz2LdKE6N4dtV12JrZAwQ5/JgH51T/FujuNdupHdzE0zbUQgHA64Hftx15pYuTeugtR/wBIH+JGirDqlvqtqQ8Ey7GUkYJ57+4P2obZ2UaWpaNdg3jZvVsr647fWiOoGJNF1CwLySRpE0nlTctGwXIPt06Z+tVvw5JIbmGyjAxIwZmBPGAT06dq0xbcDNkVSNEGo7cDfngc12L3eM7vvQLlZCvvRKCwkkTcM1gljQlkxZwW7U/5mUNAJ3lt5CrcY6V6LyTYOTS+kHkS7oAtTauAMVClvCxwetNiZiaqouhbJknJpsjAr1CSBXMrYonDZJz1Ne0w0nNKjQCa+kStyqn9KY/Ys5bG0/pWprpUOOmK6Gkw55GaK5INFBbUI7Czs9MulkSWTKw7V4kwc8n2zQzTZHSa4kJzl8n6nmrP490rY+l3ESjbbvM7f/mcfcCqHbXpimKZ/MRmulHRpxTbSsP3+tTWFvuRm3E4Xmlaaw5t3uW1CeWf+HKEqD7DoflUWOW0v7qC1lw+Wyw64oxpnhzRI55be4/E75D+62XGCnXopO1ufXnilhFNbKyk7tHmlf4hS2k7G6WEsvdIShb2xVktZtG8TK0Ewwbgeam8FWU9xn26g+9VfxdobadZSyxXsF5YxLv8q7TZNCoHUE8k/LtjrQO011Z5LZrTiSEgFgeqlf8A1TuLSsVSUiweO/DcOgaDfXKsZHkiMSuerbjt59evWq54E02ASyXVztSR0Cwqyn05b+lEPGGtz3+nQWdwzEPIHIJ52ryfviolkzxx5B/eN29Krjdw/sjlVTqybPCIL9VmYBCeHByPrVy0+3jWDB2sdufhIP8AKqBcv5oMe44Xjd8+v1/4rj9xcTiCd5Fbojo5U57c/T713BE6LLrdqC24Ljnmoq2QYDCgD2FHY/Dl7YIBLctcpgbB5BAHHRZNxz7bgM+vYvQWSOoZOQfSs89AorL6V3xzXi6YwP5at37PFefs6l5HUVV7MxjkUNuVIOKu82m5FCrjQy7Zoxl5OaKewOaVWY6Ac0qbmhaNGEgFdiRagGQAcmpNghuZCFPwKMu3+0VOM5SdIdgnxp8WlqgHxuxC/LHNYhrEM1pcMQpKnoRWjftR9Zlu71mYxyXDrAh/giHCgfPBb6mht5axybg6A5607yenPyaoYrgUvQNSFleLLIc8881pEV7o3iOBYrl3gnA+CZOCDWe6rocYJe2OxxzjtQeO5vdOkO4ulaEo5VcXsn7sWpdGwzW0um2Tm61d7y0Ufkz9iKrAubGLzboxJEW5JA6D0qrr4ikaApLJuQ+vehN7fz37eUn5OwFd/Hk9PoDzxW0WMXi316bknIP/AGweyjkfqaltc5Zoosh1G3d7kc/1oLoOl3t1NsAKjIDtjgAVpen+EPOgj2HYo7YG4+9dOcYPigRhKa5MAaXptxfSxW9qm52YBSe2e5/vvVt1L/DadY0kgnEkgAY+7e1WLS7K08MxRHDXF3OwjgjyMk47emByT6UYj1u3kuTbo8cjx4SUx9FcjOK7mqti0+VIjQ6ZdXWk28TSz21xFHghGAyw6E+tCtam/Aaf+0/L2OhjM0bgKSG+Ej0yG6e3HpV3iwygihPiDQ7PVNPvI7oSssqZO1vylRwQK6WK9on6nwwLZXMF7brPAdyN7YwfSpAVfSqaIrvwfdwCScXOn3igrIoxn/n09Qf0t0EyTRJJGQyMMgjvWWceLGHCqntTTRL6CnSaakak0cMlEz0FKuGbmvKWwltj062h/wC3Cm8Hgsu40z4jn/A+H9QnHWO3dhgd8H+tT1wvDAgKOMmql4h1/Stb07WNJsZzPPHCVn8uNtqjeA3x4wevavXfGMXRnim5IzHTAbWERdQMDmiDqZF3Jzjt3qPDBI3mLLzJDhXI/i9G+o++a7G5OgNePPs9uPRBu4w+c8EUNlsd4JAz61Yt4c/Gisfda4uCqwsdqqMdhSxk10GSsz660ua7u7iK1QloITKQvoMZoNCxjkVlwT71uX+GmgmWO51GZB/m0dUzx8AO37kZrLPGOhSaFr1xBsP4fzCYmA4xnpXsYp64s8nLFcrRdfBMhntld8ZIBNaPp92gCqTg9KxvwPqggm/CyZw5wp9DV/utWi06yMsoLFyERFPLsegFeZmUo5aPSxVLGhnxbdajNe397BHKsdlD+GgZVOQzcu498Dj6U54d86z0u2jiSX8PFN5jSyAbnPue/HelonjuLzvwU9uZoVOGfrg5PfGDjp9Kv1p+B1SxAt9jRMMYHYU9SkuN0yTkoba0N2XiO2ZAjOgY9ie9FoLsMwDAYPQ+tVWTTdDgQRLZQPcTP5cayoGbcehP86d8L6Ymm2LFbiWUCV1dnPHDEZA6DjHSnhLJFK2RyQxvaVFoubS2u7doLiKOSFhgo65BqsTeF7nSZHl0OQy2zNuezmfoe5Rv6H9aP3c/kJESeHbbSF06fEOverynB6kQUJVaAB84EiWF427qy9KaerFHqasGIXIHYCuTqsB7MD8qz+nD4Y3GfgrJIzSp3WfHel6Tem1nMjyBQzeWuduex98c/Wva70F5O2HPEc80Gk3klsP3ywsIznOWxxj++1UL/Dy1k057t3g+BikTnZk7cNkfI8VpF7Ek0Wx4yysx4z86HeGrKG2Fy0UcgZpiCGHIx0/rWuabmqEg0sbKbrWlpYXss8Ct+5JWSMDl4+vHuOo+o701+z4ZR5kTgo43AjkMOoI/Wrb4lgMdxFcED94mGx0yP/IP2qpKTpcmxtzae5JVgCfw59D/APHng9v5Y8mOm4m/DkuKY2dLQHrXP7Al1GdbSBirSdXxnaO5x9fvUyW8iJRLMrczyAGOOJg24HoSRnAJ79+2aMpZnSNKMc8sj3t8y/iJIxyi9lX0Hb6k0uPD+UvgOXNSpdshat4m0/wbZW9hYpHeXVvhPIQ4EacZ3HoCQOnXJ7CvNc0qz8XaTDqel7XLYKZ4PcMp9x0xTMnguKewLyebHPLMSdy5z/frUjQ9A1jw6Wk01lubeR8TWcoKBj/uBwcH7VpUnLVGRpR2nsz268B3TSRz6MGhk2ndDIeNw9D2/wCKYnu7o3EEet20lpPbxSCNx8UbSEYD5HTHP2ravwMMsMLfhEiOSShblDzkZHWmZ9MtrmLy5YbfYsn5ducZPbpg80XfyNHIjKfDunCS3twI4YlCguYzkM20DPzOMn3NGDLqejsz2Tt5eeNvb5iiV/4KntZXn0K8SNvM5hflT9+vNAtRutfsWZLywUqv5nhYnA9cY6fWseTHkcrNuPJj40zvTvEstnrct1PFLNMsZMR2nazt1YnHb0o94d1aaO1ETOzF2LMGP2/r9az+fxiizPEbWdmQ4O5QP60oPFxZvLSDyiejMetdLFlro5SxOzX9Y1aM2lqoYBlbOD1GB/zU+3uhLapLHhs8Vj0GpTzXCu8xkJ4+Qq++ELqZ1nikBMagMM1NTlz2CWKMYaLfFFE6Fl+Enrigfi7W4NB055Tsa5cEQq33J+XH1Ioz58Udv5hYKoXcSegHrWD+MPEEmt6zPcNuECnbDGT+VB0J9z1+tbYKzFJtAu9vp7m6lmYlmdizEnqTzSpiDiME9W5pVYmfUzjcFClsAen/ABVX1C7n02WGeG5/1W3CQD94vJwfSrYDnA8wdKg3toblArbCMHkj5VTJG1aJY5JOmRNTki1TQ/xNsdwVRKD9mHz61VGnWLOT0Hfmi2hzzWV3LpWpgRw3ALQMDx0wVz8sfeo/h7TF1DUJpbhWMNrIYyvTLj1+X88VmyJzkmjVil6UWpBUzwJDaXH4LyLor5KHZnbxnnHHp/eaVrp7yvBLNLNKd5kdiuCx5xn7UWFsPMt1VzhQzHK/mP8AZp6OHbFGNz9+2M/arcG37jPzSWj0xAqoy+N3oPeu1X4clmGG6YFIHaFyWOSeP1r0NgcPj4u4qyRJjTqrRZJjPxjkj++abMe1cK65Lcgj64qSWyD8Q4YZ9vauJdxKggfmPPoMUGjkyHLG4jbhGG/sOeMH9eKGX9ot5ayRlWWNl3sWHPJO4e2OKLzHBVNmJCSQB04P9/rTT2jk5c72O/HPAB5x9qlONlYOj598W6PPb+IZ4ZVVGwvluFwJExw3z7H5VGsfDM80m93Vh3UA1rnj/wALtqtr+0Ecrd2kRYKnKsoUEg+h4OKA6FFm3TjJPoKyZsk4dG/BxnsZ8N6NbQyRgxb+xZqvdrDBApMaKnHJ6UKjtvwsbXLOkaouXZzgAD1NUzxh41ZkmsdP3JGeHkYYZh8j/L5fKo4sblK2Pmmoof8A8QfGAkjk0vT5MQsMSsP4x6fI/f5Gs2bLrgdZDTXmyXEjyFi2W2hj3bualQp+9Uf7RXoKPFUYHLk7HyvYdKVOY9qVA4+oiW+L4QfhyOa8YAFcpnC47ce1RYp0d5wS4IUZOCPX1p4OpcjzW/L69Per8kzPTQL1iwWaGCWLcktvmSME8ZxyD9KmaAYpdOjuYto8/MrYGMk9c+/GK7nZkK7JFKhDkEZz05+VQrCSSDSoI4RG0hgVgo6DIzyfrU46mO3cQrJIFdTuBO09ePSm4592weYu7B6HrjFcRNMSxdFAx8GfX3pYdnOUUgLjr79Kpb7EodVpCI8tuPPbr/ea7UttByCCx5FRYwv7oNEFwntx0phQkfkLtlTLEhefQ9aXm0NxvokGR5PhZFwHOefTp1+le26gbP3LKOTzg9frUUFNu5ZZdoQsST2zxXVxdJZ2dzM0rlYITIQecYzz09qCa7DxdUArzUrmXWmsrImMqVRXb/cF3MOfnUu30qR1jOp6hcSMSQyCXy13Z7AY+X1qtaBJb3Sy3DxyTyyf5pZHXlSOTj3z6VbNQYLD511c7Y0eNlSNCHz6c8nPH6VnjvbLzVVEh6vqFlounujSQwIsRMybi+1Qe/z5HuTWV6P4xS3t442iWBlUBmYb8n1AyMfXNaddaRbeIdO/CX1optSQ2WJ3nHRsjoeoz7mhmoeBPDkVoSNDjkVfzeUzByAOuQck1zcJK2h4XHXyZp4j8VXWpXdvCt5NPAjB2jkVERj1AITHHzNANcurrULkM5Uzy4UFVwFHy/U/WinjzTNE0eS1uNBLosmC8TOWx16Z57etCJJwIw6riQr+gqypJNE5XdMaiRFkCR/kiGAfU+v86mwLyTUK3GxAT35NT4iAPnQb2Kh7FKlmlQCfR1n5ou5huTlBj4CO596kuzpK7bVIwMcn3qBp+0T5Ftjci9AvHTipk23bPneDnB4PPHb9aeLtE5LYxrGEt5Jfw+8iLA24JPtXqRR2/kt+HbqEwMYAxivdTxJYT7JWVgAD7du9dyKhVVNwSN5IGRz14ovUrQO1s9eCGRXYGb4jyN59veuZdiiUkuCEAJGfSm7ZwwdTNtIkIGccj0+1PRidPMImQguAoK9Bxx1oXa6D89npA8w/vOVj6Z4A9ftXi7ljU+ZuKx5ye545p12bMpCI3HrjPWuWUMWDRKSAB29elM0KmNyrMIHxIhYKqgkYGf7NVbx/d3Vn4Zv2UKFaWKLIyWKs6gg9uc/pVpuIonVw0G7dIuRgc9OaqXjmOP8A6WuwsZQvcw846nev/iklaKwptELwQiW2nQzSgTcBAV/0cfz+fXpVkjU6jcB5GZ4Y8+WWHJ9z71R9DvRDLHE5YbUCZQ4DKOoI9eg+lX20v7aSMbGA+VY1kT9rNbxte5LYUjjCJtHQVGvWiQhpJNo+dR59YihG0ZLdhigt/wCIY4j8duZnbOE6k49hTyzQqkxIYZt20Yp42toE8YaliXzgJd4bZtHIBxj6/Wg6M0j4b+Lr8qL+OtXg1nxHcXtvGkaMiIdhzuKjGT79vpQeBwc47cCtX4ozv7h6U8c10s+0gZ7UxO2FHzFNseaWjggLjjrXtDfMNKuoJ9R2HmB4W86TkDI49flUl7iRZJACDh1A46cgUqVTxN1++AzS5HVw+6K4QgYyvb3FTAdzAEDHPalSq8GyElojwgXEQeRV3JIwBA+dcJbxGQgoMeZu6d8/8V7SopJ0c21Z0YwxkGWGWB4Yj0pwp+b4m5Zc0qVM0gWNkEhfjblyf51UPHZb/pe6yxP+Zj6//YopUqjPorj+5GdWV3K2qXG8hiiRnJ6nPXNH/wAdPBIfKbGFzSpV5n1CSmq8HrYHcXfkj61q1/BYLOly+9pNhz6VnPiTVNQFxt/Gz/vFw3x449OO1KlWn6FJuNkfq21B0Bv9P5CnrUkIorylXoPo85dnc7EyIPeujSpUrChulSpUoT//2Q==" alt="Popular Movie 5">
+                <img class="poster" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9XGJsKZJ_tDaHmKD3jGeufS3wD_892XwBflrrLtvlcqR4GU8g5k_Rifs&s" alt="Popular Movie 6">
+                <img class="poster" src="https://sund-images.sunnxt.com/115625/1600x1200_Srikaaram_115625_c75991a3-0b1b-4b02-b6a5-415d6af6b662.jpg" alt="popular Movie 7">
+                <img class="poster" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_VEnIy2IcBZtQ7Zx75JIbP5zRS4K9yNheJw&s" alt="popular Movie 9">
+                <img class="poster" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoB4pCQL48GwtCiB8NzT6hOc58-x-e2vSFZQ&s" alt="popular movies 10">
+                <img class="poster" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwX9Dof0z8QpCG546F-oizD2Yg1ImebDeNHQ&s" alt="Trending Movie 11">
+            </div>
+            
+              <section class="reasons-container">
+                <h2>More Reasons to Join</h2>
+                <div class="reasons-grid">
+                  <div class="reason">
+                    <h3>Watch Anywhere</h3>
+                    <p>Stream on your phone, tablet, laptop, and TV without paying more.</p>
+                    <img src="https://thumbs.dreamstime.com/b/neon-glow-competitive-gaming-generative-ai-high-contrast-image-sleek-monitor-bathed-vibrant-colors-symbolizing-329176238.jpg" alt="Watch Anywhere">
+                  </div>
+                  <div class="reason">
+                    <h3>Unlimited Content</h3>
+                    <p>Get unlimited access to top shows, movies, and more.</p>
+                    <img src="https://cdn-icons-png.freepik.com/512/8806/8806504.png" alt="Unlimited Content">
+                  </div>
+                  <div class="reason">
+                    <h3>Cancel Anytime</h3>
+                    <p>No commitments. You can cancel anytime without hassle.</p>
+                    <img src="https://play-lh.googleusercontent.com/m0-obl5JTKWKvgpslcyc2bGkykAZh8gfKDFhhO4BF1tB-gZMIuznAQ93zGACkWNgnZ8=w600-h300-pc0xffffff-pd" alt="Cancel Anytime">
+                  </div>
+                  <div class="reason">
+                    <h3>Affordable Plans</h3>
+                    <p>Choose a plan that works for you and your family.</p>
+                    <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRialW-cJGGV6lGVj9zXl3xFf2UrhpucVHhvHsyeCsnmyxA1XN8" alt="Affordable Plans">
+                  </div>
+                </div>
+              </section>
+              <p><center><h2>Frequently Asked Questions</h2></center></p>
+              <div class="faq-container">
+                <div class="faq-item">
+                  <h2 onclick="toggleAnswer(this)">What is Netflix?</h2>
+                  <div class="faq-answer">
+                    Netflix is a streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more.
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <h2 onclick="toggleAnswer(this)">How much does Netflix cost?</h2>
+                  <div class="faq-answer">
+                    Netflix offers several membership plans to suit your needs. Plans start at ₹149 per month and go up based on the features and screens offered.
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <h2 onclick="toggleAnswer(this)">How can I cancel my Netflix subscription?</h2>
+                  <div class="faq-answer">
+                    You can cancel your Netflix subscription anytime by going to your Account settings and selecting "Cancel Membership."
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <h2 onclick="toggleAnswer(this)">where can I watch?</h2>
+                  <div class="faq-answer">
+                    Watch anywhere, anytime. Sign in with your Netflix account to watch instantly on the web at netflix.com from your personal computer or on any internet-connected device that offers the Netflix app, including smart TVs, smartphones, tablets, streaming media players and game consoles."
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <h2 onclick="toggleAnswer(this)">How do I cancel?</h2>
+                  <div class="faq-answer">
+                    You can cancel your Netflix subscription anytime by going to your Account settings and selecting "Cancel Membership."
+                  </div>
+                </div>
+              </div>
+            
+              <script>
+                function toggleAnswer(element) {
+                  const answer = element.nextElementSibling;
+                  if (answer.style.display === "block") {
+                    answer.style.display = "none";
+                  } else {
+                    answer.style.display = "block";
+                  }
+                }
+              </script>
+              <p><center>Ready to watch? Enter your email to create or restart your membership.</center></p>
+              <div class="form">
+                <input type="email" placeholder="Email Address">
+                <button class="getstarted-btn">Get Started</button>
+              </div>
+              <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>Questions? Call 1-800-123-4567</p>
+      <div class="footer-links">
+        <a href="#">FAQ</a>
+        <a href="#">Help Center</a>
+        <a href="#">Account</a>
+        <a href="#">Investor Relations</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Cookie Preferences</a>
+      </div>
+       <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-container">
+          <!-- Links Section -->
+          <div class="footer-section">
+            <h3>Links</h3>
+            <ul>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Help Center</a></li>
+              <li><a href="#">Account</a></li>
+              <li><a href="#">Investor Relations</a></li>
+            </ul>
+          </div>
+      
+          <!-- Connect Section -->
+          <div class="footer-section">
+            <h3>Connect</h3>
+            <ul>
+              <li><a href="#">Facebook</a></li>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">YouTube</a></li>
+            </ul>
+          </div>
+      
+          <!-- Legal Section -->
+          <div class="footer-section">
+            <h3>Legal</h3>
+            <ul>
+              <li><a href="#">Privacy</a></li>
+              <li><a href="#">Terms</a></li>
+              <li><a href="#">Cookie Preferences</a></li>
+            </ul>
+          </div>
+        </div>
+      
+        <div class="footer-bottom">
+          <p>&copy; 2025 Netflix, Inc.</p>
+        </div>
+      </footer>
+      
+</body>
+</html>
